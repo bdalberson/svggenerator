@@ -1,6 +1,13 @@
 const fs = require('fs');
 const inquirer = require('inquirer')
 
+class Shapes {}
+
+class Triannge {}     //should extend Shapes
+
+class Circle {}       //should extend Shapes
+
+class Square {}       //should extend Shapes
 
 
 
@@ -11,7 +18,7 @@ inquirer
       name: 'text',
       message: 'What text would you like?',
       validate: function (input) { 
-        return input.length > 3
+        return input.length > 1
       }
     },
     {
@@ -19,7 +26,7 @@ inquirer
       message: 'What colow would you like? Hex accepted',
       name: 'color',
       validate: function (input) { 
-        return input.length > 3
+        return input.length > 1
     }
     },
     {
