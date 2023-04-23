@@ -3,7 +3,6 @@ const inquirer = require('inquirer')
 const Circle = require("./lib/Circle.js")
 const Triangle = require("./lib/Triangle.js")
 const Square = require("./lib/Square.js")
-const data =  ["brian", "red", "triangle"]
 
 async function writeSVGfile(filename = "", data) {
     try {
@@ -15,7 +14,6 @@ async function writeSVGfile(filename = "", data) {
     }
 }
 
-// writeSVGfile("testing.svg", data)
 
 function startPrompt() {
     inquirer
