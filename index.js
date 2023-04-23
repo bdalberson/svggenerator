@@ -23,9 +23,9 @@ function startPrompt() {
             {
                 type: 'input',
                 name: 'text',
-                message: 'What text would you like?',
+                message: 'Enter 3 or less characters',
                 validate: function (input) {
-                    return input.length > 1
+                    return input.length < 4
                 }
             },
             {
