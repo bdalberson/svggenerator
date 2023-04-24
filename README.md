@@ -1,81 +1,117 @@
 # svggenerator
-Object-oriented Programming Challenge: SVG Logo Maker
-Your task is to build a Node.js command-line application that takes in user input to generate a logo and save it as an SVG fileLinks to an external site.. The application prompts the user to select a color and shape, provide text for the logo, and save the generated SVG to a .svg file.
 
-Because this application won’t be deployed, you’ll need to provide a link to a walkthrough video that demonstrates its functionality and passes all of the tests. You’ll need to submit a link to the video and add it to the README of your project.
 
-Refer to the Video Submission GuideLinks to an external site. on the Full-Stack Blog for additional guidance on creating a video.
+| Technology Used         | Resource URL           | 
+| ------------- |:-------------:| 
+| Git | [https://git-scm.com/](https://git-scm.com/)     |    
+| JavaScript | [https://developer.mozilla.org/en-US/docs/Web/JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)     
+| Node.JS| [https://developer.mozilla.org/en-US/docs/Glossary/Node.js?utm_source=wordpress%20blog&utm_medium=content%20link&utm_campaign=promote%20mdn](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)    
+| Jest |:https://jestjs.io/docs/getting-started:| 
+| Inquirer |:https://www.npmjs.com/package/inquirer:| 
 
-NOTE
-There is no starter code for this assignment.
+## Description 
+[Visit the Deployed Site](https://bdalberson.github.io/svggenerator/)
 
-User Story
-AS a freelance web developer
-I WANT to generate a simple logo for my projects
-SO THAT I don't have to pay a graphic designer
-Acceptance Criteria
-GIVEN a command-line application that accepts user input
-WHEN I am prompted for text
-THEN I can enter up to three characters
-WHEN I am prompted for the text color
-THEN I can enter a color keyword (OR a hexadecimal number)
-WHEN I am prompted for a shape
-THEN I am presented with a list of shapes to choose from: circle, triangle, and square
-WHEN I am prompted for the shape's color
-THEN I can enter a color keyword (OR a hexadecimal number)
-WHEN I have entered input for all the prompts
-THEN an SVG file is created named `logo.svg`
-AND the output text "Generated logo.svg" is printed in the command line
-WHEN I open the `logo.svg` file in a browser
-THEN I am shown a 300x200 pixel image that matches the criteria I entered
-Mock-Up
-The following image shows a mock-up of the generated SVG given the following input entered by the user: SVG for the text, white for the text color, circle from the list of shapes, and green for the shape color. Note that this is just an image of the output SVG and not the SVG file itself:
+This is an SVG generator.  It will need to be run through the command line.  It will take in 0-3 characters, a color and a shape and will generate a beautiful svg logo automatically! 
 
-Image showing a green circle with white text that reads "SVG.".
 
-Getting Started
-This Challenge combines many of the skills covered so far. In addition to the User Story and Acceptance Criteria, we’ve provided some guidelines to help you get started.
 
-Because this Challenge requires a video submission, refer to the Full-Stack Blog video submission guideLinks to an external site. for guidance on creating and sharing a video.
+## Code Refactor Example
 
-Your application should use JestLinks to an external site. for running the unit tests and InquirerLinks to an external site. for collecting input from the user. The application will be invoked by using the following command:
 
-node index.js
-It is recommended that you start with a directory structure that looks like the following example:
+Below is an inquirer checkbox from the command line.  This is needed to force the user select one of three shapes that can be generated.  
 
-.  
-├── examples/           // Example svg file(s) created with the app
-├── lib/                // Folder for classes or functions
-    ├── shapes.js       // Exports `Triangle`, `Circle`, and `Square` classes
-    ├── shapes.test.js  // Jest tests for shapes
-    └── more...         // Additional files and tests
-├── .gitignore          // Indicates which folders and files Git should ignore
-├── index.js            // Runs the application using imports from lib/
-├── package.json
-└── README.md           // App description, link to video, setup and usage instructions           
-IMPORTANT
-Make sure that you remove dist from the .gitignore file so that Git will track this folder and include it when you push up to your application's repository.
+```node.js
 
-The application must include Triangle, Circle, and Square classes, as well as tests for each of these classes using Jest. While not a requirement, it is recommended that you place any common functionality and properties shared by the Triangle, Circle, and Square classes in a parent Shape class and use inheritance to reuse the code in the child classes.
 
-Each shape class should be tested for a render() method that returns a string for the corresponding SVG file with the given shape color.
+function startPrompt() {
+    inquirer
+        .prompt([
+  {
+                type: 'checkbox',
+                message: 'What shape would you like?',
+                name: 'shape',
+                choices: ['circle', 'triangle', 'square']
+            }
+])}
 
-The following example test should pass:
 
-const shape = new Triangle();
-shape.setColor("blue");
-expect(shape.render()).toEqual('<polygon points="150, 18 244, 182 56, 182" fill="blue" />');
-You may need to add additional files in the lib folder for handling user input, writing to a file, etc. Writing tests for these additional files is optional.
+Below is the fucntion for extending the Shape parent oobject and rendering the SVG.  Lot of learning was involved to get to this point.
+``` JavaScript
 
-Helpful SVG Resources
-Example SVGLinks to an external site.
+class Square extends Shapes {
+    constructor(color,text) {
+        super(color,text);
+        this.color = color
+        this.text = text
+        super.type = "square"
+    
+    }
+    setcolor(color){
+        this.color = color
+    }
+    settext(text){
+        this.text = text
+    }
+    render(){
+        console.log("Generated logo.svg")
+        return `<svg width="300px" height="200px"><rect x="50" y="20" width="150" height="150" style="fill:${this.color};stroke:white;stroke-width:5" /><square  cx="125" cy="125" r="100"/> <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="50px" font-family="Arial" dy=".3em">${this.text}</text></svg>`
+    }
+}
 
-Scalable Vector Graphics (SVG)Links to an external site.
+Blow is the code for the unit test of the Square Class. The syntax is quite tricky but it tests the constructor against fed in imputs and verifies that the constuctor is working expectedly. 
 
-SVG tutorialLinks to an external site.
+``` jest
 
-Basic SVG shapesLinks to an external site.
 
-Text in SVGLinks to an external site.
+class Square extends Shapes {
+    constructor(color,text) {
+        super(color,text);
+        this.color = color
+        this.text = text
+        super.type = "square"
+    
+    }
+    setcolor(color){
+        this.color = color
+    }
+    settext(text){
+        this.text = text
+    }
+    render(){
+        console.log("Generated logo.svg")
+        return `<svg width="300px" height="200px"><rect x="50" y="20" width="150" height="150" style="fill:${this.color};stroke:white;stroke-width:5" /><square  cx="125" cy="125" r="100"/> <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="50px" font-family="Arial" dy=".3em">${this.text}</text></svg>`
+    }
+}
 
-SVG VS Code extensionLinks to an external site.
+
+
+## Usage 
+
+You will need to clone down all the repro.  once done you will need to run the coomman "npm init -y".  After that you will to run "npm install inquirer jest" . After that you can run "npm index.js" to start the prompts.  You will be prompted to enter 0-3 characters, a color and a shape, after that a beautiful SVG file will be created in the examples directory with the filename logo.svg. 
+
+
+## Learning Points 
+
+
+Learning how to use NODE.JS, learning how to use template literals. Learning to write test cases using jest and how to make andd format SVGs.  SVGs are like CSS but seemly able to do more shapes and such.  Very hard learning the new syntax and drawing style.   
+
+
+## Author Info
+
+QA professional turning into coder 
+
+* [Portfolio](https://bdalberson.github.io/Course2Biopage/)
+* [LinkedIn](https://www.linkedin.com/in/brian-alberson-464b2271/)
+* [Github](https://github.com/bdalberson)
+```
+
+## Credits
+
+Study groups, TAs, and study groups were all useful and needed to get this done.  I hope its all up to expectations.    
+
+---
+
+## Tests
+Unit tests are in the lib folder.  Run "npm test <filename>" to run the tests and see if the unit tests pass.  
+
