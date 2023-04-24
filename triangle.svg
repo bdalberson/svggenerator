@@ -1,1 +1,1 @@
-<svg width="250" height="250"><triangle  fill="red" cx="125" cy="125" r="100"/> <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="50px" font-family="Arial" dy=".3em">FRY</text><polygon points="100 15, 150 200, 200 20"/></svg>
+<svg width="300px" height="200px"><polygon fill="yellow" stroke-width="1" points="30,4,4,60,60,60"/><text x="32" y="50" text-anchor="middle" fill="white" font-size="20">fry</text></svg>
