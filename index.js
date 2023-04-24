@@ -46,17 +46,17 @@ function startPrompt() {
                 switch (shape) {
                     case 'circle':
                         const circle = new Circle(data.color, data.text)
-                        writeSVGfile("circle.svg", circle.render());
+                        writeSVGfile("logo.svg", circle.render());
                         console.log("hit cirlce")
                         break;
                     case 'square':
                         const square = new Square(data.color, data.text)
-                        writeSVGfile("square.svg", square.render())
+                        writeSVGfile("logo.svg", square.render())
                         console.log("hit square")
                         break;
                     case 'triangle':
                         const triangle = new Triangle(data.color, data.text)
-                        writeSVGfile("triangle.svg", triangle.render())
+                        writeSVGfile("logo.svg", triangle.render())
                         console.log("hit triangle")
 
                         break;
