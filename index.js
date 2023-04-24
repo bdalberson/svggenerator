@@ -47,22 +47,19 @@ function startPrompt() {
                     case 'circle':
                         const circle = new Circle(data.color, data.text)
                         writeSVGfile("logo.svg", circle.render());
-                        console.log("hit cirlce")
                         break;
                     case 'square':
                         const square = new Square(data.color, data.text)
                         writeSVGfile("logo.svg", square.render())
-                        console.log("hit square")
                         break;
                     case 'triangle':
                         const triangle = new Triangle(data.color, data.text)
                         writeSVGfile("logo.svg", triangle.render())
-                        console.log("hit triangle")
 
                         break;
                     default:
                         
-                        return console.log("hit")
+                        return null
                 }
             });
             })
