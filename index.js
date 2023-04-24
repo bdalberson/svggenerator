@@ -7,7 +7,7 @@ const Square = require("./lib/Square.js")
 async function writeSVGfile(filename = "", data) {
     try {
         const result = await data;
-        await fs.writeFile(filename, result);
+        await fs.writeFile(`examples/${filename}`, result);
         console.log("File saved successfully!");
     } catch (err) {
         console.log(err);
